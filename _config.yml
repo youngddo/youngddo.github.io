@@ -1,24 +1,28 @@
-title:              개발일기
-email:              jjoyj0401@gmail.com
-description:        끄적끄적
-author:             Start Bootstrap
-baseurl:            ""
-url:                "https://youngddo.github.io"
+title: 개발일기
+email: jjoyj0401@gmail.com
+description: ""
+author: ""
+baseurl: ""
+url: "https://youngddo.github.io"
+
+# Language and Timezone
+lang: ko
+timezone: Asia/Seoul
 
 # Social Profiles
 twitter_username:   
-github_username:    youngjae
+github_username: youngddo
 facebook_username:  
 instagram_username:  
 linkedin_username:
 
 # Add your google-analytics ID here to activate google analytics
-google_analytics:   UA-XXXXXXXXX-X # out your google-analytics code
+#google_analytics:   UA-XXXXXXXXX-X # out your google-analytics code
 
 # Build settings
-markdown:           kramdown
-paginate:           5
-paginate_path:      "/posts/page:num/"
+markdown: kramdown
+paginate: 5
+paginate_path: "/posts/page:num/"
 plugins:
   - jekyll-feed
   - jekyll-paginate

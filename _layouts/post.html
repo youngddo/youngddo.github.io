@@ -17,10 +17,8 @@ layout: default
             {% if page.subtitle %}
             <h2 class="subheading">{{ page.subtitle }}</h2>
             {% endif %}
-            <span class="meta">Posted by
-              <a href="#">{% if page.author %}{{ page.author }}{% else %}{{ site.author }}{% endif %}</a>
-              on {{ page.date | date: '%B %d, %Y' }} &middot; {% include read_time.html
-              content=page.content %}
+            <span class="meta">
+              {{ page.date | date: '%Y.%m.%d %a' }}
             </span>
           </div>
         </div>
@@ -51,4 +49,11 @@ layout: default
 
       </div>
     </div>
+	
+	<div class="row">
+		<div class="disqus-comments col-lg-8 col-md-10 mx-auto">
+			{% include disqus.html %}
+		</div>
+	</div>
   </div>
+  
