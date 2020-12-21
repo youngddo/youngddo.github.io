@@ -1,0 +1,28 @@
+---
+layout: post
+title: "공휴일 API"
+subtitle: ""
+date: 2020-12-21 14:31:00 +0900
+comments: true
+background: '/img/posts/06.jpg'
+---
+
+<h2 class="sub-title">공휴일 API 사용하기</h2>
+
+<p>전화상담 상황을 표시할 때 공휴일에는 휴일이라고 명시를 해줘야 하기 때문에 공휴일 API가 필요했다.</p>
+<p>그래서 <a href="https://data.go.kr/data/15012690/openapi.do" target="_blank">공공데이터포털</a>에서 API를 활용했다.</p>
+<hr>
+
+<p>회원가입 후 위 URL 접속하면 활용신청을 할 수가 있다.</p>
+<p>신청을 하면 인증키가 발급이 되고 <a href="https://data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15012690" target="_blank">상세설명</a> 접속 후 하단에 보면 샘플코드가 친절히 나와있다.</p>
+<p>
+	서비스URL: <span class="highlight-text">http://apis.data.go.kr/B090041/openapi/service/SpcdeInfoService</span>
+	서비스URL 뒤로 원하는 데이터를 요청하여 수집할 수 있다.
+	<ul>
+		<li>getHoliDeInfo (국경일)</li>
+		<li>getRestDeInfo (공휴일)</li>
+		<li>getAnniversaryInfo (기념일)</li>
+		<li>get24DivisionsInfo (24절기)</li>
+		<li>getSundryDayInfo (잡절)</li>
+	</ul>
+</p>
