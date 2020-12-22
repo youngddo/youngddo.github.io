@@ -5,4 +5,4 @@ h2.sub-title:before {content: "";display: block;position: absolute;left: 0;top: 
 .disqus-comments {margin-top: 2.5rem;}
 .btn-primary {background-color: #fff !important; border-color: #333 !important; color: #333 !important;}
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active {background-color: #333 !important; border-color: #333 !important; color: #fff !important;}
-.highlight-text {display: inline-block; padding: 3px 8px 5px 8px; background-color: #f8f8f8;}
+.highlight-text {display: inline-block; padding: 3px 8px 5px 8px; background-color: #f8f8f8; word-break: break-word;}
