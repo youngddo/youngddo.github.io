@@ -1,0 +1,19 @@
+---
+layout: post
+title: "PDO ORACLE 날짜 설정"
+subtitle: ""
+date: 2021-01-04 17:05:00 +0900
+comments: true
+background: '/img/posts/06.jpg'
+---
+
+<h2 class="sub-title">PDO ORACLE 날짜 설정</h2>
+
+<p>C사 택배사와 데이터 연동을 하다가 날짜 부분에서 생긴 작은 이슈이다.</p>
+<p>C사 택배사는 ORACLE, 우리는 MySQL이라서 여러가지 데이터베이스를 제어할 수 있는 PDO를 사용해서 연동했다.</p>
+<p>데이터를 택배사측에 INSERT하는 도중에 SYSDATE를 설정해야 하는데 내부사정으로 날짜를 포맷해서 보내야했다.</p>
+<p>형식(date("Y-m-d H:i:s"))을 맞춰서 INSERT를 했지만 형식이 맞지 않는다고 INSERT가 되지 않았다.</p>
+<P>그래서 INSERT를 하기 전에 아래와 같이 문법을 추가해주었다.</P>
+<hr>
+
+<p><pre><code class="php">ALTER SESSION SET NLS_DATE_FORMAT='YYYY-MM-DD HH24:MI:SS'"</code></pre></p>
