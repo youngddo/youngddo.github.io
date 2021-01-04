@@ -1,0 +1,82 @@
+---
+layout: post
+title: "Youtube Data API"
+subtitle: ""
+date: 2021-01-04 15:33:00 +0900
+comments: true
+background: '/img/posts/06.jpg'
+---
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<h2 class="sub-title">Youtube Data API 사용하기</h2>
+
+<p>유튜브 채널을 운영 중인데 사이트에서도 동일하게 영상과 조회수 등을 노출시켜달라는 요청이 있었다.</p>
+<p>그래서 <a href="https://console.developers.google.com/apis/library/youtube.googleapis.com?q=youtube" target="_blank">Youtube Data</a> api(v3)를 활용했다.</p>
+<hr>
+
+<p>위 링크에서 API를 사용하겠다고 하면 <a href="https://console.developers.google.com/apis/credentials" target="_blank">사용자 인증 정보</a>를 만들어야 하는데 API KEY로 발급을 받으면 된다.</p>
+<hr>
+
+<p>간단하게 아래와 같이 예시코드를 만들었다.</p>
+<p>
+<pre><code class="php">function youtube_data($type="",$param = array()) {
+	$url = "https://www.googleapis.com/youtube/v3/".$type;
+	$url .= '?'.http_build_query($param, '', '&');
+	$ch = curl_init();
+
+	curl_setopt($ch, CURLOPT_HEADER, 0);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	curl_setopt($ch, CURLOPT_URL, $url);
+	curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+	curl_setopt($ch, CURLOPT_VERBOSE, 0);
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+	$response = curl_exec($ch);
+
+	curl_close($ch);
+	$data = json_decode($response);
+	$values = json_decode(json_encode($data), true);
+
+	return $values['items'];
+}
+
+$api_key = 'Your api key';
+$channel_id = 'Your channel id';
+
+$data = array(
+	'part' => 'snippet',
+	'channelId' => $channel_id,
+	'maxResults' => '20',
+	'order' => 'date',
+	'type' => 'video',
+	'key' => $api_key
+);
+$return_data = youtube_data("search",$data);
+
+foreach($return_data as $key => $values) {
+	$data = array(
+		'part' => 'snippet',
+		'id' => $values['id']['videoId'],
+		'key' => $api_key
+	);
+	$return_data1 = youtube_data("videos",$data);
+
+	$data = array(
+		'part' => 'statistics',
+		'id' => $values['id']['videoId'],
+		'key' => $api_key
+	);
+	$return_data2 = youtube_data("videos",$data);
+
+	/*
+	고유아이디: $values['id']['videoId']
+	제목: $return_data1[0]['snippet']['title']
+	생성일: $return_data1[0]['snippet']['publishedAt']
+	썸네일: $return_data1[0]['snippet']['thumbnails']['medium']['url']
+	조회수: $return_data2[0]['statistics']['viewCount']
+	*/
+}</code></pre>
+</p>
+<hr>
+
+<p>데이터에 대한 자세한 내용은 <a href="https://developers.google.com/youtube/v3/docs?hl=ko" target="_blank">여기</a>를 참조하면 될 것 같다.</p>
