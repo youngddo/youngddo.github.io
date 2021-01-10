@@ -1,0 +1,50 @@
+---
+layout: post
+title: "Webcam & Canvas 이미지 업로드"
+subtitle: ""
+date: 2021-01-10 22:59:00 +0900
+comments: true
+background: '/img/posts/06.jpg'
+---
+
+<h2 class="sub-title">Webcam을 사용하여 Canvas 이미지를 저장해본다.</h2>
+
+<p>물류시스템을 운영 중에 거래명세서를 쉽게 관리할 수 있도록 해야했다.</p>
+<p>그래서 거래명세서를 웹캠으로 촬영 후 바로 이미지로 저장할 수 있도록 만들었다.</p>
+<p>아래는 간단한 코드만 작성해두었다.</p>
+<hr>
+
+<p>
+	<div><span class="point-text">html</span></div>
+	<pre><code class="html">&lt;video id="video" width="320" height="240" autoplay&gt;&lt;/video&gt;
+&lt;canvas id="canvas" width="960" height="720"&gt;&lt;/canvas&gt;
+&lt;button type="button" id="webcamBtn"&gt;캡쳐하기&lt;/button&gt;</code></pre>
+	<div><span class="point-text">javascript</span></div>
+	<pre><code class="javascript">if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+	navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
+		var video = document.getElementById('video');
+		video.srcObject = stream;
+		video.play();
+	});
+}
+var canvas = document.getElementById('canvas');
+var context = canvas.getContext('2d');
+var video = document.getElementById('video');
+
+document.getElementById("webcamBtn").addEventListener("click",function() {
+	var file = canvas.toDataURL(); // 촬영한 이미지의 base64 문자열
+	context.drawImage(video,0,0,960,720);
+});</code></pre>
+</p>
+<hr>
+
+<p>위에서 base64 문자열로 만들어진 파일을 전달받고 이미지를 업로드했다. (나는 AJAX로 처리를 했다.)</p>
+<p>
+	<div><span class="point-text">php</span></div>
+	<pre><code class="php">$file = $_POST['file'];
+list($type, $file) = explode(';',$file);
+list(,$file) = explode(',',$file);
+$file = base64_decode($file);
+$filename = date('Ymd').".jpg";
+file_put_contents("{$savedir}{$filename}",$file);</code></pre>
+</p>
