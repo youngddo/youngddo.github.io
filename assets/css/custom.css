@@ -6,7 +6,7 @@ h2.sub-title:before {content: "";display: block;position: absolute;left: 0;top: 
 .btn-primary {background-color: #fff !important; border-color: #333 !important; color: #333 !important;}
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active {background-color: #333 !important; border-color: #333 !important; color: #fff !important;}
 .highlight-text {display: inline-block; padding: 3px 8px 5px 8px; background-color: #f8f8f8; word-break: break-word;}
-.point-text {display: inline-block; padding: 3px 8px 5px 8px; background-color: #faebd7}
+.point-text {display: inline-block; padding: 3px 8px 5px 8px; background-color: ##FFF0F5;}
 .zoom-image {cursor: pointer;}
 #modal-popup {position: fixed; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); overflow: hidden; z-index:1031; display: none;}
 #modal-popup .close {display: inline-block; position: absolute; right: 3%; top: 3%; font-size: 4.2rem; font-weight: 700; color: #f1f1f1; transition: 0.3s;}
